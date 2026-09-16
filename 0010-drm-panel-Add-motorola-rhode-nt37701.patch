@@ -1,24 +1,24 @@
-From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From b82cff660120652fac633a878dc1a3ebc73b6a2f Mon Sep 17 00:00:00 2001
 From: fwlta <monkeyfwlta@protonmail.com>
-Date: Tue, 16 Sep 2026 00:00:00 -0300
-Subject: [PATCH] drm: panel: Add motorola rhode nt37701 panel driver
-
-CSOT nt37701 1080x2400 DSC cmd mode panel, init sequence and mode
-from stock rhode dtbo.
+Date: Wed, 16 Sep 2026 11:24:19 -0300
+Subject: [PATCH 10/14] drm: panel: Add motorola rhode nt37701 panel driver
 
 Signed-off-by: fwlta <monkeyfwlta@protonmail.com>
 ---
- .../bindings/display/panel/motorola,rhode-nt37701.yaml |  40 ++++
- drivers/gpu/drm/panel/Kconfig                            |  10 +++
- drivers/gpu/drm/panel/Makefile                           |   1 +
- drivers/gpu/drm/panel/panel-motorola-nt37701.c           | 326 ++++++++++++++++++
+ .../display/panel/motorola,rhode-nt37701.yaml |  40 +++
+ drivers/gpu/drm/panel/Kconfig                 |  10 +
+ drivers/gpu/drm/panel/Makefile                |   1 +
+ .../gpu/drm/panel/panel-motorola-nt37701.c    | 326 ++++++++++++++++++
  4 files changed, 377 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/panel/motorola,rhode-nt37701.yaml
- create mode 100644 drivers/gpu/drm/panel/panel-motorola-nt37701.c
 
 diff --git a/Documentation/devicetree/bindings/display/panel/motorola,rhode-nt37701.yaml b/Documentation/devicetree/bindings/display/panel/motorola,rhode-nt37701.yaml
-new file mode 100644
-@@ -0,0 +1,40 @@
+index dac949731..89febe938 100644
+--- a/Documentation/devicetree/bindings/display/panel/motorola,rhode-nt37701.yaml
++++ b/Documentation/devicetree/bindings/display/panel/motorola,rhode-nt37701.yaml
+@@ -38,3 +38,43 @@ required:
+   - port
+ 
+ unevaluatedProperties: false
 +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
 +%YAML 1.2
 +---
@@ -60,7 +60,10 @@ new file mode 100644
 +
 +unevaluatedProperties: false
 diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
-@@ -543,6 +543,16 @@
+index 1556785b8..857740162 100644
+--- a/drivers/gpu/drm/panel/Kconfig
++++ b/drivers/gpu/drm/panel/Kconfig
+@@ -543,6 +543,16 @@ config DRM_PANEL_MOTOROLA_MOT
  	  unknown. The panel has a 540x960 resolution and uses 24 bit RGB per
  	  pixel.
  
@@ -78,7 +81,10 @@ diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
  	tristate "Motorola Moto G52 Visionox rm692e5 1080x2400 DSI cmd mode panel"
  	depends on OF
 diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makefile
-@@ -52,6 +52,7 @@
+index fad0873e5..0d6f68d98 100644
+--- a/drivers/gpu/drm/panel/Makefile
++++ b/drivers/gpu/drm/panel/Makefile
+@@ -52,6 +52,7 @@ obj-$(CONFIG_DRM_PANEL_LG_SW43408) += panel-lg-sw43408.o
  obj-$(CONFIG_DRM_PANEL_LXD_M9189A) += panel-lxd-m9189a.o
  obj-$(CONFIG_DRM_PANEL_MAGNACHIP_D53E6EA8966) += panel-magnachip-d53e6ea8966.o
  obj-$(CONFIG_DRM_PANEL_MOTOROLA_MOT) += panel-motorola-mot.o
@@ -87,10 +93,13 @@ diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makefile
  obj-$(CONFIG_DRM_PANEL_NEC_NL8048HL11) += panel-nec-nl8048hl11.o
  obj-$(CONFIG_DRM_PANEL_NEWVISION_NV3051D) += panel-newvision-nv3051d.o
 diff --git a/drivers/gpu/drm/panel/panel-motorola-nt37701.c b/drivers/gpu/drm/panel/panel-motorola-nt37701.c
-new file mode 100644
+index 427450a35..2ceb7e896 100644
 --- a/drivers/gpu/drm/panel/panel-motorola-nt37701.c
 +++ b/drivers/gpu/drm/panel/panel-motorola-nt37701.c
-@@ -0,0 +1,326 @@
+@@ -324,3 +324,329 @@ module_mipi_dsi_driver(rhode_nt37701_driver);
+ 
+ MODULE_DESCRIPTION("DRM driver for motorola rhode nt37701 DSI panel");
+ MODULE_LICENSE("GPL");
 +// SPDX-License-Identifier: GPL-2.0-only
 +
 +#include <linux/backlight.h>
@@ -417,6 +426,3 @@ new file mode 100644
 +
 +MODULE_DESCRIPTION("DRM driver for motorola rhode nt37701 DSI panel");
 +MODULE_LICENSE("GPL");
-
---
-2.55.0

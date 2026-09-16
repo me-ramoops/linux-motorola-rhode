@@ -1,9 +1,7 @@
-From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From bc4240768e4d7cb56cc284f9adf4b78dd8121b53 Mon Sep 17 00:00:00 2001
 From: fwlta <monkeyfwlta@protonmail.com>
-Date: Tue, 16 Sep 2026 00:00:00 -0300
-Subject: [PATCH] Input: goodix-berlin - add gt9916s match
-
-Same protocol as gt9916, used in motorola rhode touchscreen.
+Date: Wed, 16 Sep 2026 11:24:17 -0300
+Subject: [PATCH 08/14] Input: goodix-berlin - add gt9916s match
 
 Signed-off-by: fwlta <monkeyfwlta@protonmail.com>
 ---
@@ -11,9 +9,10 @@ Signed-off-by: fwlta <monkeyfwlta@protonmail.com>
  1 file changed, 2 insertions(+)
 
 diff --git a/drivers/input/touchscreen/goodix_berlin_spi.c b/drivers/input/touchscreen/goodix_berlin_spi.c
+index 01f850f48..f8e2409b3 100644
 --- a/drivers/input/touchscreen/goodix_berlin_spi.c
 +++ b/drivers/input/touchscreen/goodix_berlin_spi.c
-@@ -175,13 +175,15 @@
+@@ -175,6 +175,7 @@ static const struct goodix_berlin_ic_data gt9916_data = {
  static const struct spi_device_id goodix_berlin_spi_ids[] = {
  	{ .name = "gt9897", .driver_data = (long)&gt9897_data },
  	{ .name = "gt9916", .driver_data = (long)&gt9916_data },
@@ -21,7 +20,7 @@ diff --git a/drivers/input/touchscreen/goodix_berlin_spi.c b/drivers/input/touch
  	{ },
  };
  MODULE_DEVICE_TABLE(spi, goodix_berlin_spi_ids);
-
+@@ -182,6 +183,7 @@ MODULE_DEVICE_TABLE(spi, goodix_berlin_spi_ids);
  static const struct of_device_id goodix_berlin_spi_of_match[] = {
  	{ .compatible = "goodix,gt9897", .data = &gt9897_data },
  	{ .compatible = "goodix,gt9916", .data = &gt9916_data },
@@ -29,6 +28,3 @@ diff --git a/drivers/input/touchscreen/goodix_berlin_spi.c b/drivers/input/touch
  	{ }
  };
  MODULE_DEVICE_TABLE(of, goodix_berlin_spi_of_match);
- MODULE_DEVICE_TABLE(of, goodix_berlin_spi_of_match);
---
-2.55.0

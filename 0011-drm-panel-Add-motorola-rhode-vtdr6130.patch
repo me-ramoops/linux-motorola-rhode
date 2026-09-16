@@ -1,24 +1,24 @@
-From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From 75f139b06b1182504cf0aeedb6fba73b8beac7af Mon Sep 17 00:00:00 2001
 From: fwlta <monkeyfwlta@protonmail.com>
-Date: Tue, 16 Sep 2026 00:00:00 -0300
-Subject: [PATCH] drm: panel: Add motorola rhode vtdr6130 panel driver
-
-CSOT vtdr6130 1080x2400 DSC cmd mode panel, init sequence and mode
-from stock rhode dtbo.
+Date: Wed, 16 Sep 2026 11:24:20 -0300
+Subject: [PATCH 11/14] drm: panel: Add motorola rhode vtdr6130 panel driver
 
 Signed-off-by: fwlta <monkeyfwlta@protonmail.com>
 ---
- .../bindings/display/panel/motorola,rhode-vtdr6130.yaml |  40 ++++
- drivers/gpu/drm/panel/Kconfig                             |  10 +++
- drivers/gpu/drm/panel/Makefile                            |   1 +
- drivers/gpu/drm/panel/panel-motorola-vtdr6130.c           | 329 ++++++++++++++++++
+ .../panel/motorola,rhode-vtdr6130.yaml        |  40 +++
+ drivers/gpu/drm/panel/Kconfig                 |  10 +
+ drivers/gpu/drm/panel/Makefile                |   1 +
+ .../gpu/drm/panel/panel-motorola-vtdr6130.c   | 329 ++++++++++++++++++
  4 files changed, 380 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/panel/motorola,rhode-vtdr6130.yaml
- create mode 100644 drivers/gpu/drm/panel/panel-motorola-vtdr6130.c
 
 diff --git a/Documentation/devicetree/bindings/display/panel/motorola,rhode-vtdr6130.yaml b/Documentation/devicetree/bindings/display/panel/motorola,rhode-vtdr6130.yaml
-new file mode 100644
-@@ -0,0 +1,40 @@
+index 8fce03f3e..1fe916609 100644
+--- a/Documentation/devicetree/bindings/display/panel/motorola,rhode-vtdr6130.yaml
++++ b/Documentation/devicetree/bindings/display/panel/motorola,rhode-vtdr6130.yaml
+@@ -38,3 +38,43 @@ required:
+   - port
+ 
+ unevaluatedProperties: false
 +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
 +%YAML 1.2
 +---
@@ -60,7 +60,10 @@ new file mode 100644
 +
 +unevaluatedProperties: false
 diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
-@@ -563,6 +563,16 @@
+index 857740162..e49b379db 100644
+--- a/drivers/gpu/drm/panel/Kconfig
++++ b/drivers/gpu/drm/panel/Kconfig
+@@ -563,6 +563,16 @@ config DRM_PANEL_MOTOROLA_RHODE_RM692E5
  	  1080x2400 DSC command mode AMOLED panel found in the Motorola
  	  Moto G52 (rhode).
  
@@ -78,7 +81,10 @@ diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
  	tristate "NEC NL8048HL11 RGB panel"
  	depends on GPIOLIB && OF && SPI
 diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makefile
-@@ -54,6 +54,7 @@
+index 0d6f68d98..ad073cd7e 100644
+--- a/drivers/gpu/drm/panel/Makefile
++++ b/drivers/gpu/drm/panel/Makefile
+@@ -54,6 +54,7 @@ obj-$(CONFIG_DRM_PANEL_MAGNACHIP_D53E6EA8966) += panel-magnachip-d53e6ea8966.o
  obj-$(CONFIG_DRM_PANEL_MOTOROLA_MOT) += panel-motorola-mot.o
  obj-$(CONFIG_DRM_PANEL_MOTOROLA_RHODE_NT37701) += panel-motorola-nt37701.o
  obj-$(CONFIG_DRM_PANEL_MOTOROLA_RHODE_RM692E5) += panel-motorola-rm692e5.o
@@ -87,10 +93,13 @@ diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makefile
  obj-$(CONFIG_DRM_PANEL_NEWVISION_NV3051D) += panel-newvision-nv3051d.o
  obj-$(CONFIG_DRM_PANEL_NEWVISION_NV3052C) += panel-newvision-nv3052c.o
 diff --git a/drivers/gpu/drm/panel/panel-motorola-vtdr6130.c b/drivers/gpu/drm/panel/panel-motorola-vtdr6130.c
-new file mode 100644
+index 610aeae4e..a209ae77b 100644
 --- a/drivers/gpu/drm/panel/panel-motorola-vtdr6130.c
 +++ b/drivers/gpu/drm/panel/panel-motorola-vtdr6130.c
-@@ -0,0 +1,329 @@
+@@ -327,3 +327,332 @@ module_mipi_dsi_driver(rhode_vtdr6130_driver);
+ 
+ MODULE_DESCRIPTION("DRM driver for motorola rhode vtdr6130 DSI panel");
+ MODULE_LICENSE("GPL");
 +// SPDX-License-Identifier: GPL-2.0-only
 +
 +#include <linux/backlight.h>
@@ -420,6 +429,3 @@ new file mode 100644
 +
 +MODULE_DESCRIPTION("DRM driver for motorola rhode vtdr6130 DSI panel");
 +MODULE_LICENSE("GPL");
-
---
-2.55.0
