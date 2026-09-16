@@ -1,7 +1,7 @@
 From 60b8a9c4ed553a6059fc2dd15327695a5043a890 Mon Sep 17 00:00:00 2001
 From: fwlta <monkeyfwlta@protonmail.com>
 Date: Wed, 16 Sep 2026 11:24:12 -0300
-Subject: [PATCH 01/14] arm64: dts: qcom: sm6225-motorola-rhode: Add device
+Subject: [PATCH 01/15] arm64: dts: qcom: sm6225-motorola-rhode: Add device
  tree for
 
 Signed-off-by: fwlta <monkeyfwlta@protonmail.com>

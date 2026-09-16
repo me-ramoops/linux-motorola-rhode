@@ -1,7 +1,7 @@
 From 74d739818769959c688db09cf5674a495ce355de Mon Sep 17 00:00:00 2001
 From: fwlta <monkeyfwlta@protonmail.com>
 Date: Wed, 16 Sep 2026 11:24:22 -0300
-Subject: [PATCH 14/14] arm64: dts: qcom: sm6225-motorola-rhode: fix sd card
+Subject: [PATCH 14/15] arm64: dts: qcom: sm6225-motorola-rhode: fix sd card
  detect polarity
 
 Signed-off-by: fwlta <monkeyfwlta@protonmail.com>

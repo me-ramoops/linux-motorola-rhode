@@ -1,7 +1,7 @@
 From db60cb26c33f2129796f735d27ce52a462807723 Mon Sep 17 00:00:00 2001
 From: fwlta <monkeyfwlta@protonmail.com>
 Date: Wed, 16 Sep 2026 11:24:13 -0300
-Subject: [PATCH 03/14] clk: qcom: Add SM6225 GCC/DISPCC/GPUCC wiring
+Subject: [PATCH 03/15] clk: qcom: Add SM6225 GCC/DISPCC/GPUCC wiring
 
 Signed-off-by: fwlta <monkeyfwlta@protonmail.com>
 ---

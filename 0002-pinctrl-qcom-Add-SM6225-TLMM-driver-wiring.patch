@@ -1,7 +1,7 @@
 From 099d22afa9dc7ee19d92cf96a1d303fa2be12e95 Mon Sep 17 00:00:00 2001
 From: fwlta <monkeyfwlta@protonmail.com>
 Date: Wed, 16 Sep 2026 11:24:13 -0300
-Subject: [PATCH 02/14] pinctrl: qcom: Add SM6225 TLMM driver wiring
+Subject: [PATCH 02/15] pinctrl: qcom: Add SM6225 TLMM driver wiring
 
 Signed-off-by: fwlta <monkeyfwlta@protonmail.com>
 ---

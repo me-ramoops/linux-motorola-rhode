@@ -1,7 +1,7 @@
 From 6b1ae096d1fb87dc62843906c8a539e730e524ef Mon Sep 17 00:00:00 2001
 From: fwlta <monkeyfwlta@protonmail.com>
 Date: Wed, 16 Sep 2026 11:24:14 -0300
-Subject: [PATCH 04/14] arm64: dts: qcom: sm6225: use SM6225 TLMM compatible
+Subject: [PATCH 04/15] arm64: dts: qcom: sm6225: use SM6225 TLMM compatible
 
 Signed-off-by: fwlta <monkeyfwlta@protonmail.com>
 ---

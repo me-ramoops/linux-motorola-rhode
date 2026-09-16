@@ -1,7 +1,7 @@
 From a54da133ca23fd93c6e57beafee5cf93fbf9e1cb Mon Sep 17 00:00:00 2001
 From: fwlta <monkeyfwlta@protonmail.com>
 Date: Wed, 16 Sep 2026 11:24:20 -0300
-Subject: [PATCH 11/14] drm: panel: Add motorola rhode vtdr6130 panel driver
+Subject: [PATCH 11/15] drm: panel: Add motorola rhode vtdr6130 panel driver
 
 Signed-off-by: fwlta <monkeyfwlta@protonmail.com>
 ---

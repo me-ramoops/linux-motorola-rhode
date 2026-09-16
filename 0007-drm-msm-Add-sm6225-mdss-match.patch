@@ -1,7 +1,7 @@
 From 9cdf836ebd7a7e94d2ed0adef36e7cd92e8f6400 Mon Sep 17 00:00:00 2001
 From: fwlta <monkeyfwlta@protonmail.com>
 Date: Wed, 16 Sep 2026 11:24:17 -0300
-Subject: [PATCH 07/14] drm: msm: add sm6225 mdss match
+Subject: [PATCH 07/15] drm: msm: add sm6225 mdss match
 
 Signed-off-by: fwlta <monkeyfwlta@protonmail.com>
 ---

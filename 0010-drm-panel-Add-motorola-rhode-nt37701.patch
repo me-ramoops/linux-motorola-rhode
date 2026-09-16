@@ -1,7 +1,7 @@
 From 5f4d4deecda1b428f3fcdc5950402b888f14eb56 Mon Sep 17 00:00:00 2001
 From: fwlta <monkeyfwlta@protonmail.com>
 Date: Wed, 16 Sep 2026 11:24:19 -0300
-Subject: [PATCH 10/14] drm: panel: Add motorola rhode nt37701 panel driver
+Subject: [PATCH 10/15] drm: panel: Add motorola rhode nt37701 panel driver
 
 Signed-off-by: fwlta <monkeyfwlta@protonmail.com>
 ---
