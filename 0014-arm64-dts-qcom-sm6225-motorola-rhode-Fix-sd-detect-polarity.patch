@@ -1,4 +1,4 @@
-From 8d11d316207b9cb7498ca4a452e0858a02d2e81a Mon Sep 17 00:00:00 2001
+From 74d739818769959c688db09cf5674a495ce355de Mon Sep 17 00:00:00 2001
 From: fwlta <monkeyfwlta@protonmail.com>
 Date: Wed, 16 Sep 2026 11:24:22 -0300
 Subject: [PATCH 14/14] arm64: dts: qcom: sm6225-motorola-rhode: fix sd card
@@ -11,7 +11,7 @@ Signed-off-by: fwlta <monkeyfwlta@protonmail.com>
  2 files changed, 17 insertions(+), 1 deletion(-)
 
 diff --git a/arch/arm64/boot/dts/qcom/sm6225-motorola-rhode.dts b/arch/arm64/boot/dts/qcom/sm6225-motorola-rhode.dts
-index b462a2e2e..d6cdf29ba 100644
+index 8fc43f9ad..58cb5bfbd 100644
 --- a/arch/arm64/boot/dts/qcom/sm6225-motorola-rhode.dts
 +++ b/arch/arm64/boot/dts/qcom/sm6225-motorola-rhode.dts
 @@ -225,7 +225,7 @@ &sdhc_2 {
