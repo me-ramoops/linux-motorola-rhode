@@ -1,0 +1,24 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Kultrinhaa_ <pedrootaviopluss@proton.me>
+Date: Tue, 16 Sep 2026 00:00:00 -0300
+Subject: [PATCH] pinctrl: qcom: sm6225: drop missing remove callback
+
+msm_pinctrl_remove does not exist in this tree, same as the other
+sm6xxx pinctrl drivers which register no remove callback.
+
+Signed-off-by: Kultrinhaa_ <pedrootaviopluss@proton.me>
+---
+ drivers/pinctrl/qcom/pinctrl-sm6225.c | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/drivers/pinctrl/qcom/pinctrl-sm6225.c b/drivers/pinctrl/qcom/pinctrl-sm6225.c
+--- a/drivers/pinctrl/qcom/pinctrl-sm6225.c
++++ b/drivers/pinctrl/qcom/pinctrl-sm6225.c
+@@ -918,8 +918,7 @@
+ 		.of_match_table = sm6225_tlmm_of_match,
+ 	},
+ 	.probe = sm6225_tlmm_probe,
+-	.remove = msm_pinctrl_remove,
+ };
+ 
+ static int __init sm6225_tlmm_init(void)

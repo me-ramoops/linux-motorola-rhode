@@ -30,6 +30,7 @@ source="
 	0002-pinctrl-qcom-Add-SM6225-TLMM-driver-wiring.patch
 	0003-clk-qcom-Add-SM6225-GCC-DISPCC-GPUCC-wiring.patch
 	0004-arm64-dts-qcom-sm6225-Use-SM6225-TLMM-compatible.patch
+	0005-pinctrl-qcom-sm6225-Drop-missing-remove-callback.patch
 "
 
 builddir="$srcdir/$_repository-$_commit"
@@ -69,4 +70,5 @@ f689ad23b7b3c856b8c3a9e127a296e5a6b59f542fdf4a349cbb24a01c1870c571e2d1fe6f2c69db
 0cea53f1a5e0070be7c957f6adfad61b1cefb0c156e3a000f9da4c509a0d0e4c42a9a77532cba5876f33374dd2b3d89cca8124b3b3443b8ff11b0ab3a897ae7b  0002-pinctrl-qcom-Add-SM6225-TLMM-driver-wiring.patch
 dd3831649918ef829aa252005b12db53963ea5cba0b4f214bbda3257cfd402904e4d14175fc53f249031e8205581f763a70d0313739cbc8208e12251db59fd00  0003-clk-qcom-Add-SM6225-GCC-DISPCC-GPUCC-wiring.patch
 5417699fec574363169be83e7764285c79d44a13cf07bc9f775b56dee66a2b9940da77b654c924f6d5dfb72072d4e92ff0d77102dc0acb2237261a7b5e3ffe0a  0004-arm64-dts-qcom-sm6225-Use-SM6225-TLMM-compatible.patch
+0c2eafc682fc0d0a90abd3bdec076cf9d183ca247e11a12c75567522e37ac3bae771b0ac27106de39cd5c3d2c944245d127ee2f9e7702bde0d889b6e13acb411  0005-pinctrl-qcom-sm6225-Drop-missing-remove-callback.patch
 "
