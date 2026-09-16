@@ -88,6 +88,8 @@ diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makefile
  obj-$(CONFIG_DRM_PANEL_NEWVISION_NV3052C) += panel-newvision-nv3052c.o
 diff --git a/drivers/gpu/drm/panel/panel-motorola-vtdr6130.c b/drivers/gpu/drm/panel/panel-motorola-vtdr6130.c
 new file mode 100644
+--- a/drivers/gpu/drm/panel/panel-motorola-vtdr6130.c
++++ b/drivers/gpu/drm/panel/panel-motorola-vtdr6130.c
 @@ -0,0 +1,329 @@
 +// SPDX-License-Identifier: GPL-2.0-only
 +
@@ -418,5 +420,6 @@ new file mode 100644
 +
 +MODULE_DESCRIPTION("DRM driver for motorola rhode vtdr6130 DSI panel");
 +MODULE_LICENSE("GPL");
+
 --
 2.55.0

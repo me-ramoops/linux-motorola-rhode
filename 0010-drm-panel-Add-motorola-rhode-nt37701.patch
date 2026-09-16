@@ -88,6 +88,8 @@ diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makefile
  obj-$(CONFIG_DRM_PANEL_NEWVISION_NV3051D) += panel-newvision-nv3051d.o
 diff --git a/drivers/gpu/drm/panel/panel-motorola-nt37701.c b/drivers/gpu/drm/panel/panel-motorola-nt37701.c
 new file mode 100644
+--- a/drivers/gpu/drm/panel/panel-motorola-nt37701.c
++++ b/drivers/gpu/drm/panel/panel-motorola-nt37701.c
 @@ -0,0 +1,326 @@
 +// SPDX-License-Identifier: GPL-2.0-only
 +
@@ -168,7 +170,7 @@ new file mode 100644
 +	mipi_dsi_dcs_write_seq_multi(dsi_ctx, 0x2f, 0x08);
 +	mipi_dsi_dcs_exit_sleep_mode_multi(dsi_ctx);
 +	mipi_dsi_msleep(dsi_ctx, 120);
-+	mipi_dsi_dcs_display_on_mode_multi(dsi_ctx);
++	mipi_dsi_dcs_set_display_on_multi(dsi_ctx);
 +}
 +
 +static int rhode_nt37701_disable(struct drm_panel *panel)
@@ -415,5 +417,6 @@ new file mode 100644
 +
 +MODULE_DESCRIPTION("DRM driver for motorola rhode nt37701 DSI panel");
 +MODULE_LICENSE("GPL");
+
 --
 2.55.0
