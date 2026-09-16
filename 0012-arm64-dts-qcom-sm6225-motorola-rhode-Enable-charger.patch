@@ -1,0 +1,37 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: fwlta <monkeyfwlta@protonmail.com>
+Date: Tue, 16 Sep 2026 00:00:00 -0300
+Subject: [PATCH] arm64: dts: qcom: sm6225-motorola-rhode: enable bq25890 charger
+
+bq25890 on qupv3 i2c5, charge parameters from stock rhode dtbo.
+
+Signed-off-by: fwlta <monkeyfwlta@protonmail.com>
+---
+ .../boot/dts/qcom/sm6225-motorola-rhode.dts   | 16 ++++++++++++++++
+ 1 file changed, 22 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/sm6225-motorola-rhode.dts b/arch/arm64/boot/dts/qcom/sm6225-motorola-rhode.dts
+--- a/arch/arm64/boot/dts/qcom/sm6225-motorola-rhode.dts
++++ b/arch/arm64/boot/dts/qcom/sm6225-motorola-rhode.dts
+@@ -353,3 +353,19 @@
+ &xo_board {
+ 	clock-frequency = <19200000>;
+ };
++
++&i2c5 {
++	status = "okay";
++
++	charger@6a {
++		compatible = "ti,bq25890";
++		reg = <0x6a>;
++
++		interrupt-parent = <&tlmm>;
++		interrupts = <96 IRQ_TYPE_EDGE_FALLING>;
++
++		ti,battery-regulation-voltage = <4350000>;
++		ti,charge-current = <3250000>;
++		ti,termination-current = <256000>;
++	};
++};
+--
+2.55.0
