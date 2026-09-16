@@ -1,37 +1,51 @@
-name: build
+name: Build Rhode kernel
 
 on:
   push:
-  pull_request:
+    branches:
+      - main
   workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: Install toolchain
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y bc bison flex libssl-dev make python3 gcc-aarch64-linux-gnu device-tree-compiler
+      - name: Install dependencies
+        run: sudo apt-get update -yqq && sudo apt-get install -yqq bc bison flex libelf-dev libssl-dev make patch python3 gzip gcc-aarch64-linux-gnu device-tree-compiler
 
       - name: Fetch kernel source
         run: |
-          curl -sL https://github.com/rhode-on-mainline/linux/archive/refs/heads/v7.2.1-sm6225.tar.gz | tar -xzf -
-          mv linux-v7.2.1-sm6225 linux
+          curl --fail --location --retry 3 --output linux.tar.gz https://gitlab.postmarketos.org/sm6225-mainline/kernels/linux-v.7.2.1/-/archive/v7.2.1-sm6225/linux-v.7.2.1-v7.2.1-sm6225.tar.gz
+          echo '5798b6ee63ccc183fdb66e737feb8dd62d811b4374de75943c9ec9081675a94f0b1a5af2988d172429de363c7b94955dad4086195ee936a0232d8de91b755c1a  linux.tar.gz' | sha512sum -c -
+          mkdir linux
+          tar --strip-components=1 -xzf linux.tar.gz -C linux
 
       - name: Apply patches
         run: |
           cd linux
           for p in ../*.patch; do patch -p1 < "$p"; done
 
-      - name: Build kernel and dtbs
+      - name: Configure
         run: |
           cd linux
           cp ../config-motorola-rhode.aarch64 .config
           make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- olddefconfig
-          make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- -j$(nproc) Image.gz dtbs
+
+      - name: Build kernel
+        run: |
+          cd linux
+          make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- -j"$(nproc)" Image.gz dtbs
+
+      - name: Verify Rhode outputs
+        run: |
+          test -f linux/arch/arm64/boot/Image.gz
+          test -f linux/arch/arm64/boot/dts/qcom/sm6225-motorola-rhode.dtb
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
