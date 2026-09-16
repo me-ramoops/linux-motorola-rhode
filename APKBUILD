@@ -38,6 +38,8 @@ source="
 	0010-drm-panel-Add-motorola-rhode-nt37701.patch
 	0011-drm-panel-Add-motorola-rhode-vtdr6130.patch
 	0012-arm64-dts-qcom-sm6225-motorola-rhode-Enable-charger.patch
+	0013-arm64-dts-qcom-sm6225-motorola-rhode-Charger-on-se1.patch
+	0014-arm64-dts-qcom-sm6225-motorola-rhode-Fix-sd-detect-polarity.patch
 "
 
 builddir="$srcdir/$_repository-$_commit"
@@ -72,7 +74,7 @@ package() {
 
 sha512sums="
 5798b6ee63ccc183fdb66e737feb8dd62d811b4374de75943c9ec9081675a94f0b1a5af2988d172429de363c7b94955dad4086195ee936a0232d8de91b755c1a  linux-v.7.2.1-v7.2.1-sm6225.tar.gz
-23dd5540908b82112b01fb1619a11815cef1e5662cba781854c3948fb278c39e703f50d356128f025712d827c0b5692d332eb7423545e04e52d0440beae4a1ef  config-motorola-rhode.aarch64
+8ffe0d041c86e1e13d9a291be593035c2c2ed9bca422de37e52c31062f66cde31393bccf6bdcccf6740ff16978fe3c44157e1719c3e240dbd8b4e62987ce0fc0  config-motorola-rhode.aarch64
 c2885ef5f98535e30b960248f1b6fa6ced6a891fff2ed9ce1e94e61349138e7f36b84b8a24749fe1b9e2d3341519f5970f964b0abf936922c69be1ae37d5bcd1  0001-arm64-dts-qcom-sm6225-motorola-rhode-Add-device-tree.patch
 3824adba1763f7e7df6d715bff299038f9e9274709321d92151e296969586a85af9a567b3db64448963638742e9b12ea4488d974a0b1fda6743b809b7a1b4bdd  0002-pinctrl-qcom-Add-SM6225-TLMM-driver-wiring.patch
 9480dd95998ce09d813df42adec8eb1d2ef15f38410ca7ef9e0d7a9768e7bd0e5e009e9bf557891f0a183422de59b4b896ba56eac2b3d67c1773d3d2a9e63c66  0003-clk-qcom-Add-SM6225-GCC-DISPCC-GPUCC-wiring.patch
@@ -85,4 +87,6 @@ f7f70d7476b1a95e97ec71e680b719ecb2d51ae106dd41679690cbe511be875d377b8222d75715af
 72b3ff374b7e31bf23f6aba3cda03d11068b72b959be2b1bc4049210cb3e4ef0d63f10b4f74ac7c880829c843fb630ee49ac2e753c2ff3703988021f8b46901d  0010-drm-panel-Add-motorola-rhode-nt37701.patch
 269cc1c94a15e9b345b7f68062c43de4b95adb284c346ec93bef44b70ecd21b89e2e87248ec82f11b30deb143501c6d1748bf60d30586992b8e4fc5092a1b080  0011-drm-panel-Add-motorola-rhode-vtdr6130.patch
 2882137c1c5f94ceb160b786618fab8f356d2cf8a0b99e2053330e12bcbc9ee03bab5b0985836868861836db62a576772b29d6e7df53606fca3bb546e622d967  0012-arm64-dts-qcom-sm6225-motorola-rhode-Enable-charger.patch
+3d2629df2ea4e011359d057c30e092716974b2a0b7572a5c8d635a5ed9ecf5d3e822a03576336a34b79f4bdc87dd4f077f1e3f085923048b7d829182973aa3fc  0013-arm64-dts-qcom-sm6225-motorola-rhode-Charger-on-se1.patch
+62658b6cd0596ad9787193ca208f73d09b349cfa8855cac1236bc68b5fb26edd8b5029f5b626b77e11a2f0f53f4d8199985c1fd4e8e54589d2a3c525c00fc45d  0014-arm64-dts-qcom-sm6225-motorola-rhode-Fix-sd-detect-polarity.patch
 "
