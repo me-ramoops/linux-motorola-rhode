@@ -1,5 +1,5 @@
 From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
-From: Kultrinhaa_ <pedrootaviopluss@proton.me>
+From: fwlta <monkeyfwlta@protonmail.com>
 Date: Tue, 16 Sep 2026 00:00:00 -0300
 Subject: [PATCH] pinctrl: qcom: Add SM6225 TLMM driver wiring
 
@@ -7,7 +7,7 @@ The fork ships drivers/pinctrl/qcom/pinctrl-sm6225.c but it was never
 wired into Kconfig.msm/Makefile, so PINCTRL_SM6225 did not exist and
 nothing could probe qcom,sm6225-tlmm.
 
-Signed-off-by: Kultrinhaa_ <pedrootaviopluss@proton.me>
+Signed-off-by: fwlta <monkeyfwlta@protonmail.com>
 ---
  drivers/pinctrl/qcom/Kconfig.msm | 9 +++++++++
  drivers/pinctrl/qcom/Makefile    | 1 +

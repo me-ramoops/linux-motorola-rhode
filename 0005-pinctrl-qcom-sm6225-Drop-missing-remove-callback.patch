@@ -1,12 +1,12 @@
 From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
-From: Kultrinhaa_ <pedrootaviopluss@proton.me>
+From: fwlta <monkeyfwlta@protonmail.com>
 Date: Tue, 16 Sep 2026 00:00:00 -0300
 Subject: [PATCH] pinctrl: qcom: sm6225: drop missing remove callback
 
 msm_pinctrl_remove does not exist in this tree, same as the other
 sm6xxx pinctrl drivers which register no remove callback.
 
-Signed-off-by: Kultrinhaa_ <pedrootaviopluss@proton.me>
+Signed-off-by: fwlta <monkeyfwlta@protonmail.com>
 ---
  drivers/pinctrl/qcom/pinctrl-sm6225.c | 1 -
  1 file changed, 1 deletion(-)
