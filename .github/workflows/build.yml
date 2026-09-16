@@ -1,0 +1,42 @@
+name: build
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install toolchain
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y bc bison flex libssl-dev make python3 gcc-aarch64-linux-gnu device-tree-compiler
+
+      - name: Fetch kernel source
+        run: |
+          curl -sL https://github.com/rhode-on-mainline/linux/archive/refs/heads/v7.2.1-sm6225.tar.gz | tar -xzf -
+          mv linux-v7.2.1-sm6225 linux
+
+      - name: Apply patches
+        run: |
+          cd linux
+          for p in ../*.patch; do patch -p1 < "$p"; done
+
+      - name: Build kernel and dtbs
+        run: |
+          cd linux
+          cp ../config-motorola-rhode.aarch64 .config
+          make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- olddefconfig
+          make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- -j$(nproc) Image.gz dtbs
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: rhode-kernel
+          path: |
+            linux/arch/arm64/boot/Image.gz
+            linux/arch/arm64/boot/dts/qcom/sm6225-motorola-rhode.dtb
