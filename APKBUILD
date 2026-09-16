@@ -1,5 +1,5 @@
 # Reference: <https://postmarketos.org/vendorkernel>
-# maintainer="fwlta <monkeyfwlta@protonmail.com>"
+maintainer="fwlta <monkeyfwlta@protonmail.com>"
 pkgname=linux-motorola-rhode
 pkgver=7.2.1
 pkgrel=3
