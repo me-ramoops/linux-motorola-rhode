@@ -40,12 +40,16 @@ jobs:
       - name: Build kernel
         run: |
           cd linux
-          make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- -j"$(nproc)" Image.gz dtbs
+          make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- -j"$(nproc)" Image.gz dtbs modules
 
       - name: Verify Rhode outputs
         run: |
           test -f linux/arch/arm64/boot/Image.gz
           test -f linux/arch/arm64/boot/dts/qcom/sm6225-motorola-rhode.dtb
+          test -f linux/drivers/gpu/drm/panel/panel-motorola-rm692e5.ko
+          test -f linux/drivers/gpu/drm/panel/panel-motorola-nt37701.ko
+          test -f linux/drivers/gpu/drm/panel/panel-motorola-vtdr6130.ko
+          test -f linux/drivers/input/touchscreen/goodix_berlin_spi.ko
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
@@ -54,3 +58,5 @@ jobs:
           path: |
             linux/arch/arm64/boot/Image.gz
             linux/arch/arm64/boot/dts/qcom/sm6225-motorola-rhode.dtb
+            linux/drivers/gpu/drm/panel/panel-motorola-*.ko
+            linux/drivers/input/touchscreen/goodix_berlin_spi.ko
