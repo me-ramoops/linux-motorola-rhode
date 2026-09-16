@@ -1,0 +1,27 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Kultrinhaa_ <pedrootaviopluss@proton.me>
+Date: Tue, 16 Sep 2026 00:00:00 -0300
+Subject: [PATCH] arm64: dts: qcom: sm6225: use SM6225 TLMM compatible
+
+sm6225.dtsi incorrectly used qcom,sm6115-tlmm while the fork provides a
+dedicated pinctrl-sm6225 driver matching qcom,sm6225-tlmm.
+
+Signed-off-by: Kultrinhaa_ <pedrootaviopluss@proton.me>
+---
+ arch/arm64/boot/dts/qcom/sm6225.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/sm6225.dtsi b/arch/arm64/boot/dts/qcom/sm6225.dtsi
+--- a/arch/arm64/boot/dts/qcom/sm6225.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm6225.dtsi
+@@ -632,7 +632,7 @@
+ 		};
+ 
+ 		tlmm: pinctrl@500000 {
+-			compatible = "qcom,sm6115-tlmm";
++			compatible = "qcom,sm6225-tlmm";
+ 			reg = <0x0 0x00500000 0x0 0x400000>,
+ 			      <0x0 0x00900000 0x0 0x400000>,
+ 			      <0x0 0x00d00000 0x0 0x400000>;
+--
+2.55.0

@@ -1,0 +1,98 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Kultrinhaa_ <pedrootaviopluss@proton.me>
+Date: Tue, 16 Sep 2026 00:00:00 -0300
+Subject: [PATCH] clk: qcom: Add SM6225 GCC/DISPCC/GPUCC wiring
+
+The fork ships gcc-sm6225.c, dispcc-sm6225.c and gpucc-sm6225.c but
+they were never wired into Kconfig/Makefile, so the SM6225 clock
+controllers could never probe (qcom,gcc-sm6225).
+
+Signed-off-by: Kultrinhaa_ <pedrootaviopluss@proton.me>
+---
+ drivers/clk/qcom/Kconfig  | 30 ++++++++++++++++++++++++++++++
+ drivers/clk/qcom/Makefile |  3 +++
+ 2 files changed, 33 insertions(+)
+
+diff --git a/drivers/clk/qcom/Kconfig b/drivers/clk/qcom/Kconfig
+
+--- a/drivers/clk/qcom/Kconfig
++++ b/drivers/clk/qcom/Kconfig
+@@ -1281,6 +1281,16 @@
+ 	  Say Y if you want to support display devices and functionality such as
+ 	  splash screen
+ 
++config SM_DISPCC_6225
++	tristate "SM6225 Display Clock Controller"
++	depends on ARM64 || COMPILE_TEST
++	depends on SM_GCC_6225
++	help
++	  Support for the display clock controller on Qualcomm Technologies, Inc
++	  SM6225 devices.
++	  Say Y if you want to support display devices and functionality such as
++	  splash screen
++
+ config SM_DISPCC_7150
+ 	tristate "SM7150 Display Clock Controller"
+ 	depends on ARM64 || COMPILE_TEST
+@@ -1389,6 +1399,15 @@
+ 	  Say Y if you want to use peripheral devices such as UART,
+ 	  SPI, I2C, USB, SD/UFS, PCIe etc.
+ 
++config SM_GCC_6225
++	tristate "SM6225 Global Clock Controller"
++	depends on ARM64 || COMPILE_TEST
++	select QCOM_GDSC
++	help
++	  Support for the global clock controller on SM6225 devices.
++	  Say Y if you want to use peripheral devices such as UART,
++	  SPI, I2C, USB, SD/UFS, PCIe etc.
++
+ config SM_GCC_6350
+ 	tristate "SM6350 Global Clock Controller"
+ 	depends on ARM64 || COMPILE_TEST
+@@ -1516,6 +1535,15 @@
+ 	  Say Y if you want to support graphics controller devices and
+ 	  functionality such as 3D graphics.
+ 
++config SM_GPUCC_6225
++	tristate "SM6225 Graphics Clock Controller"
++	select SM_GCC_6225
++	depends on ARM64 || COMPILE_TEST
++	help
++	  Support for the graphics clock controller on SM6225 devices.
++	  Say Y if you want to support graphics controller devices and
++	  functionality such as 3D graphics.
++
+ config SM_GPUCC_6375
+ 	tristate "SM6375 Graphics Clock Controller"
+ 	select SM_GCC_6375
+diff --git a/drivers/clk/qcom/Makefile b/drivers/clk/qcom/Makefile
+
+--- a/drivers/clk/qcom/Makefile
++++ b/drivers/clk/qcom/Makefile
+@@ -160,6 +160,7 @@
+ obj-$(CONFIG_SM_DISPCC_4450) += dispcc-sm4450.o
+ obj-$(CONFIG_SM_DISPCC_6115) += dispcc-sm6115.o
+ obj-$(CONFIG_SM_DISPCC_6125) += dispcc-sm6125.o
++obj-$(CONFIG_SM_DISPCC_6225) += dispcc-sm6225.o
+ obj-$(CONFIG_SM_DISPCC_6350) += dispcc-sm6350.o
+ obj-$(CONFIG_SM_DISPCC_6375) += dispcc-sm6375.o
+ obj-$(CONFIG_SM_DISPCC_7150) += dispcc-sm7150.o
+@@ -171,6 +172,7 @@
+ obj-$(CONFIG_SM_GCC_4450) += gcc-sm4450.o
+ obj-$(CONFIG_SM_GCC_6115) += gcc-sm6115.o
+ obj-$(CONFIG_SM_GCC_6125) += gcc-sm6125.o
++obj-$(CONFIG_SM_GCC_6225) += gcc-sm6225.o
+ obj-$(CONFIG_SM_GCC_6350) += gcc-sm6350.o
+ obj-$(CONFIG_SM_GCC_6375) += gcc-sm6375.o
+ obj-$(CONFIG_SM_GCC_7150) += gcc-sm7150.o
+@@ -185,6 +187,7 @@
+ obj-$(CONFIG_SM_GPUCC_4450) += gpucc-sm4450.o
+ obj-$(CONFIG_SM_GPUCC_6115) += gpucc-sm6115.o
+ obj-$(CONFIG_SM_GPUCC_6125) += gpucc-sm6125.o
++obj-$(CONFIG_SM_GPUCC_6225) += gpucc-sm6225.o
+ obj-$(CONFIG_SM_GPUCC_6350) += gpucc-sm6350.o
+ obj-$(CONFIG_SM_GPUCC_6375) += gpucc-sm6375.o
+ obj-$(CONFIG_SM_GPUCC_8150) += gpucc-sm8150.o
+--
+2.55.0

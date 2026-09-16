@@ -1,0 +1,319 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Kultrinhaa_ <pedrootaviopluss@proton.me>
+Date: Tue, 16 Sep 2026 00:00:00 -0300
+Subject: [PATCH] arm64: dts: qcom: sm6225-motorola-rhode: Add device tree for
+ rhode
+
+Signed-off-by: Kultrinhaa_ <pedrootaviopluss@proton.me>
+---
+ arch/arm64/boot/dts/qcom/Makefile             |   1 +
+ .../boot/dts/qcom/sm6225-motorola-rhode.dts   | 288 ++++++++++++++++++
+ 2 files changed, 289 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/sm6225-motorola-rhode.dts
+
+diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+--- a/arch/arm64/boot/dts/qcom/Makefile
++++ b/arch/arm64/boot/dts/qcom/Makefile
+@@ -342,6 +342,7 @@
+ dtb-$(CONFIG_ARCH_QCOM)	+= sm6125-xiaomi-ginkgo.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sm6125-xiaomi-laurel-sprout.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sm6125-xiaomi-willow.dtb
++dtb-$(CONFIG_ARCH_QCOM)	+= sm6225-motorola-rhode.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sm6350-sony-xperia-lena-pdx213.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sm6375-sony-xperia-murray-pdx225.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sm7125-xiaomi-curtana.dtb
+diff --git a/arch/arm64/boot/dts/qcom/sm6225-motorola-rhode.dts b/arch/arm64/boot/dts/qcom/sm6225-motorola-rhode.dts
+new file mode 100644
+--- /dev/null
++++ b/arch/arm64/boot/dts/qcom/sm6225-motorola-rhode.dts
+@@ -0,0 +1,288 @@
++/dts-v1/;
++
++#include <dt-bindings/usb/pd.h>
++#include "sm6225.dtsi"
++#include "pm6125.dtsi"
++
++/ {
++	model = "Motorola Moto G52";
++	compatible = "motorola,rhode", "qcom,sm6225";
++	chassis-type = "handset";
++
++	qcom,msm-id = <518 0x10000>;
++	qcom,board-id = <0x0 0xb000>;
++
++	aliases {
++		serial0 = &uart4;
++	};
++
++	chosen {
++		stdout-path = "serial0:115200n8";
++		bootargs = "pmos.nosplash clk_ignore_unused pd_ignore_unused";
++	};
++
++	vph_pwr: regulator-vph-pwr {
++		compatible = "regulator-fixed";
++		regulator-name = "vph_pwr";
++		regulator-min-microvolt = <3700000>;
++		regulator-max-microvolt = <3700000>;
++		regulator-always-on;
++		regulator-boot-on;
++	};
++
++	reserved-memory {
++		#address-cells = <2>;
++		#size-cells = <2>;
++		ranges;
++
++		ramoops@5d000000 {
++			compatible = "ramoops";
++			reg = <0x00 0x5d000000 0x00 0x400000>;
++			record-size = <0x80000>;
++			pmsg-size = <0x200000>;
++			console-size = <0x100000>;
++			max-reason = <0x04>;
++		};
++	};
++};
++
++&gpi_dma0 {
++	status = "okay";
++};
++
++&pm6125_rtc {
++	status = "okay";
++};
++
++&pon_pwrkey {
++	status = "okay";
++};
++
++&pon_resin {
++	status = "okay";
++};
++
++&qupv3_id_0 {
++	status = "okay";
++};
++
++&rpm_requests {
++	regulators-0 {
++		compatible = "qcom,rpm-pm6125-regulators";
++
++		pm6125_s6: s6 {
++			regulator-min-microvolt = <400000>;
++			regulator-max-microvolt = <1419000>;
++		};
++
++		pm6125_s7: s7 {
++			regulator-min-microvolt = <1569000>;
++			regulator-max-microvolt = <2040000>;
++		};
++
++		pm6125_s8: s8 {
++			regulator-min-microvolt = <1060000>;
++			regulator-max-microvolt = <1170000>;
++		};
++
++		pm6125_l1: l1 {
++			regulator-min-microvolt = <950000>;
++			regulator-max-microvolt = <1150000>;
++		};
++
++		pm6125_l4: l4 {
++			regulator-min-microvolt = <720000>;
++			regulator-max-microvolt = <1050000>;
++		};
++
++		pm6125_l5: l5 {
++			regulator-min-microvolt = <1648000>;
++			regulator-max-microvolt = <3200000>;
++			regulator-allow-set-load;
++			regulator-always-on;
++		};
++
++		pm6125_l6: l6 {
++			regulator-min-microvolt = <570000>;
++			regulator-max-microvolt = <650000>;
++		};
++
++		pm6125_l7: l7 {
++			regulator-min-microvolt = <1256000>;
++			regulator-max-microvolt = <1256000>;
++			regulator-always-on;
++		};
++
++		pm6125_l8: l8 {
++			regulator-min-microvolt = <400000>;
++			regulator-max-microvolt = <728000>;
++		};
++
++		pm6125_l9: l9 {
++			regulator-min-microvolt = <1504000>;
++			regulator-max-microvolt = <2000000>;
++		};
++
++		pm6125_l10: l10 {
++			regulator-min-microvolt = <1700000>;
++			regulator-max-microvolt = <1900000>;
++		};
++
++		pm6125_l11: l11 {
++			regulator-min-microvolt = <1700000>;
++			regulator-max-microvolt = <1950000>;
++		};
++
++		pm6125_l12: l12 {
++			regulator-min-microvolt = <1620000>;
++			regulator-max-microvolt = <1980000>;
++		};
++
++		pm6125_l13: l13 {
++			regulator-min-microvolt = <1504000>;
++			regulator-max-microvolt = <2000000>;
++		};
++
++		pm6125_l14: l14 {
++			regulator-min-microvolt = <1700000>;
++			regulator-max-microvolt = <1900000>;
++		};
++
++		pm6125_l15: l15 {
++			regulator-min-microvolt = <2700000>;
++			regulator-max-microvolt = <3544000>;
++		};
++
++		pm6125_l16: l16 {
++			regulator-min-microvolt = <1700000>;
++			regulator-max-microvolt = <1900000>;
++		};
++
++		pm6125_l17: l17 {
++			regulator-min-microvolt = <1220000>;
++			regulator-max-microvolt = <1304000>;
++		};
++
++		pm6125_l18: l18 {
++			regulator-min-microvolt = <1100000>;
++			regulator-max-microvolt = <1300000>;
++		};
++
++		pm6125_l19: l19 {
++			regulator-min-microvolt = <1620000>;
++			regulator-max-microvolt = <3300000>;
++		};
++
++		pm6125_l20: l20 {
++			regulator-min-microvolt = <1620000>;
++			regulator-max-microvolt = <3300000>;
++		};
++
++		pm6125_l21: l21 {
++			regulator-min-microvolt = <1600000>;
++			regulator-max-microvolt = <3544000>;
++		};
++
++		pm6125_l22: l22 {
++			regulator-min-microvolt = <2950000>;
++			regulator-max-microvolt = <3300000>;
++			regulator-allow-set-load;
++			regulator-always-on;
++		};
++
++		pm6125_l23: l23 {
++			regulator-min-microvolt = <3200000>;
++			regulator-max-microvolt = <3400000>;
++		};
++
++		pm6125_l24: l24 {
++			regulator-min-microvolt = <2700000>;
++			regulator-max-microvolt = <3544000>;
++		};
++	};
++};
++
++&sdc2_state_off {
++	cd-pins {
++		pins = "gpio88";
++		function = "gpio";
++		drive-strength = <2>;
++		bias-disable;
++	};
++};
++
++&sdc2_state_on {
++	cd-pins {
++		pins = "gpio88";
++		function = "gpio";
++		drive-strength = <2>;
++		bias-pull-up;
++	};
++};
++
++&sdhc_2 {
++	pinctrl-0 = <&sdc2_state_on>;
++	pinctrl-1 = <&sdc2_state_off>;
++	pinctrl-names = "default", "sleep";
++
++	cd-gpios = <&tlmm 88 GPIO_ACTIVE_LOW>;
++
++	vmmc-supply = <&pm6125_l22>;
++	vqmmc-supply = <&pm6125_l5>;
++
++	status = "okay";
++};
++
++&sleep_clk {
++	clock-frequency = <32764>;
++};
++
++&uart4 {
++	status = "okay";
++};
++
++&ufs_mem_hc {
++	vcc-supply = <&pm6125_l24>;
++	vcc-max-microamp = <800000>;
++	vccq2-supply = <&pm6125_l11>;
++	vccq2-max-microamp = <800000>;
++	vdd-hba-supply = <&pm6125_l18>;
++	status = "okay";
++};
++
++&ufs_mem_phy {
++	vdda-phy-supply = <&pm6125_l4>;
++	vdda-phy-max-microamp = <0x14ec4>;
++	vdda-pll-supply = <&pm6125_l18>;
++	vdda-pll-max-microamp = <0x477c>;
++	status = "okay";
++};
++
++&usb {
++	status = "okay";
++	qcom,select-utmi-as-pipe-clk;
++};
++
++&usb_dwc3 {
++	phys = <&usb_hsphy>;
++	phy-names = "usb2-phy";
++	maximum-speed = "high-speed";
++	dr_mode = "otg";
++};
++
++&usb_hsphy {
++	vdd-supply = <&pm6125_l4>;
++	vdda-pll-supply = <&pm6125_l12>;
++	vdda-phy-dpdm-supply = <&pm6125_l15>;
++	status = "okay";
++};
++
++&usb_qmpphy {
++	vdda-phy-supply = <&pm6125_l4>;
++	vdda-pll-supply = <&pm6125_l12>;
++	status = "okay";
++};
++
++&xo_board {
++	clock-frequency = <19200000>;
++};
+--
+2.55.0
