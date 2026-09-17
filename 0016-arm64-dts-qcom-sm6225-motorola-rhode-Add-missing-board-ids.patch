@@ -1,0 +1,25 @@
+From cf0f28411934fab6de38b10e03e6c2fe48b70b48 Mon Sep 17 00:00:00 2001
+From: MatrixhKa <familiacomplicada1234@gmail.com>
+Date: Thu, 17 Sep 2026 08:26:10 -0300
+Subject: [PATCH] arm64: dts: qcom: sm6225-motorola-rhode: add missing
+ board-ids
+
+---
+ arch/arm64/boot/dts/qcom/sm6225-motorola-rhode.dts | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/sm6225-motorola-rhode.dts b/arch/arm64/boot/dts/qcom/sm6225-motorola-rhode.dts
+index 17ae67583..ca8446714 100644
+--- a/arch/arm64/boot/dts/qcom/sm6225-motorola-rhode.dts
++++ b/arch/arm64/boot/dts/qcom/sm6225-motorola-rhode.dts
+@@ -10,7 +10,9 @@ / {
+ 	chassis-type = "handset";
+ 
+ 	qcom,msm-id = <518 0x10000>;
+-	qcom,board-id = <0x0 0xb000>;
++	qcom,board-id = <0x0 0xa000>,
++			<0x0 0xb000>,
++			<0x0 0xc000>;
+ 
+ 	chosen {
+ 		bootargs = "console=tty0 pmos.nosplash clk_ignore_unused pd_ignore_unused";

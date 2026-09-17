@@ -41,6 +41,7 @@ source="
 	0013-arm64-dts-qcom-sm6225-motorola-rhode-Charger-on-se1.patch
 	0014-arm64-dts-qcom-sm6225-motorola-rhode-Fix-sd-detect-polarity.patch
 	0015-arm64-dts-qcom-sm6225-motorola-rhode-Use-splash-framebuffer.patch
+	0016-arm64-dts-qcom-sm6225-motorola-rhode-Add-missing-board-ids.patch
 "
 
 builddir="$srcdir/$_repository-$_commit"
@@ -91,4 +92,5 @@ f59e1325dc5995f419bf5d4e97329be6647f83084ebf41a3271eb13fecbaa040d7732ac3e4e98adc
 50db52a91966d2dfa2ef899ada6312c6957957e9e4d62c15481924cee95769db42820dcd566dd63e4c04cd7342df0bc47bfdb2cd3e2c6ce0abc1ef16facb43b9  0013-arm64-dts-qcom-sm6225-motorola-rhode-Charger-on-se1.patch
 3ee2f26b0c60a814c804d4d72963a8feba849633f570b48dea2871ccbae1fae0c49f934113705e29903a7b5130a6039822102eb1fde08b0c59a95b8030f0b164  0014-arm64-dts-qcom-sm6225-motorola-rhode-Fix-sd-detect-polarity.patch
 ab2adcf3be755381af044d399a6e43867a0e2497c4ea98388b5aee0c24b6ec14e17c86b8b4671e15c681eb1cfd1dc7a8b194706c8d0c66e506e0f96d7d2bc8a3  0015-arm64-dts-qcom-sm6225-motorola-rhode-Use-splash-framebuffer.patch
+09489d2ef97d6299cd23d4887409852a1451dd74d38d90b60fad499f4daa0047e80f723f8ee408617b2c87eb0ed05dd3d6813f96c243f74b2b594ca230f2bdd9  0016-arm64-dts-qcom-sm6225-motorola-rhode-Add-missing-board-ids.patch
 "
