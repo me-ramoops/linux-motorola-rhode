@@ -1,0 +1,93 @@
+From a54da133ca23fd93c6e57beafee5cf93fbf9e1cb Mon Sep 17 00:00:00 2001
+From: fwlta <monkeyfwlta@protonmail.com>
+Date: Wed, 16 Sep 2026 11:24:20 -0300
+Subject: [PATCH 11/15] drm: panel: Add motorola rhode vtdr6130 panel driver
+
+Signed-off-by: fwlta <monkeyfwlta@protonmail.com>
+---
+ .../panel/motorola,rhode-vtdr6130.yaml        | 40 +++++++++++++++++++
+ drivers/gpu/drm/panel/Kconfig                 | 10 +++++
+ drivers/gpu/drm/panel/Makefile                |  1 +
+ 3 files changed, 51 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/display/panel/motorola,rhode-vtdr6130.yaml b/Documentation/devicetree/bindings/display/panel/motorola,rhode-vtdr6130.yaml
+index 8fce03f3e..1fe916609 100644
+--- a/Documentation/devicetree/bindings/display/panel/motorola,rhode-vtdr6130.yaml
++++ b/Documentation/devicetree/bindings/display/panel/motorola,rhode-vtdr6130.yaml
+@@ -38,3 +38,43 @@ required:
+   - port
+ 
+ unevaluatedProperties: false
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/panel/motorola,rhode-vtdr6130.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Motorola Moto G52 CSOT vtdr6130 DSI panel
++
++maintainers:
++  - fwlta <monkeyfwlta@protonmail.com>
++
++allOf:
++  - $ref: panel-common.yaml#
++
++properties:
++  compatible:
++    const: motorola,rhode-vtdr6130
++
++  reg:
++    maxItems: 1
++
++  dvdd-supply:
++    description: Digital voltage rail
++
++  vci-supply:
++    description: Analog voltage rail
++
++  vddio-supply:
++    description: I/O voltage rail
++
++required:
++  - compatible
++  - reg
++  - reset-gpios
++  - dvdd-supply
++  - vci-supply
++  - vddio-supply
++  - port
++
++unevaluatedProperties: false
+diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
+index 857740162..e49b379db 100644
+--- a/drivers/gpu/drm/panel/Kconfig
++++ b/drivers/gpu/drm/panel/Kconfig
+@@ -563,6 +563,16 @@ config DRM_PANEL_MOTOROLA_RHODE_RM692E5
+ 	  1080x2400 DSC command mode AMOLED panel found in the Motorola
+ 	  Moto G52 (rhode).
+ 
++config DRM_PANEL_MOTOROLA_RHODE_VTDR6130
++	tristate "Motorola Moto G52 CSOT vtdr6130 1080x2400 DSI cmd mode panel"
++	depends on OF
++	depends on DRM_MIPI_DSI
++	depends on BACKLIGHT_CLASS_DEVICE
++	help
++	  Say Y here if you want to enable support for the CSOT vtdr6130
++	  1080x2400 DSC command mode AMOLED panel found in the Motorola
++	  Moto G52 (rhode).
++
+ config DRM_PANEL_NEC_NL8048HL11
+ 	tristate "NEC NL8048HL11 RGB panel"
+ 	depends on GPIOLIB && OF && SPI
+diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makefile
+index 0d6f68d98..ad073cd7e 100644
+--- a/drivers/gpu/drm/panel/Makefile
++++ b/drivers/gpu/drm/panel/Makefile
+@@ -54,6 +54,7 @@ obj-$(CONFIG_DRM_PANEL_MAGNACHIP_D53E6EA8966) += panel-magnachip-d53e6ea8966.o
+ obj-$(CONFIG_DRM_PANEL_MOTOROLA_MOT) += panel-motorola-mot.o
+ obj-$(CONFIG_DRM_PANEL_MOTOROLA_RHODE_NT37701) += panel-motorola-nt37701.o
+ obj-$(CONFIG_DRM_PANEL_MOTOROLA_RHODE_RM692E5) += panel-motorola-rm692e5.o
++obj-$(CONFIG_DRM_PANEL_MOTOROLA_RHODE_VTDR6130) += panel-motorola-vtdr6130.o
+ obj-$(CONFIG_DRM_PANEL_NEC_NL8048HL11) += panel-nec-nl8048hl11.o
+ obj-$(CONFIG_DRM_PANEL_NEWVISION_NV3051D) += panel-newvision-nv3051d.o
+ obj-$(CONFIG_DRM_PANEL_NEWVISION_NV3052C) += panel-newvision-nv3052c.o

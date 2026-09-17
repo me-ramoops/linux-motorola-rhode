@@ -1,0 +1,60 @@
+From bec376991ae6d331e84e589b4b6d47dec2a5478f Mon Sep 17 00:00:00 2001
+From: fwlta <monkeyfwlta@protonmail.com>
+Date: Wed, 16 Sep 2026 11:24:21 -0300
+Subject: [PATCH 12/15] arm64: dts: qcom: sm6225-motorola-rhode: enable bq25890
+ charger
+
+Signed-off-by: fwlta <monkeyfwlta@protonmail.com>
+---
+ .../boot/dts/qcom/sm6225-motorola-rhode.dts      | 16 ++++++++++++++++
+ .../boot/dts/qcom/sm6225-motorola-rhode.dts.orig | 16 ----------------
+ 2 files changed, 16 insertions(+), 16 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/sm6225-motorola-rhode.dts b/arch/arm64/boot/dts/qcom/sm6225-motorola-rhode.dts
+index bea6b0edf..fdc800cec 100644
+--- a/arch/arm64/boot/dts/qcom/sm6225-motorola-rhode.dts
++++ b/arch/arm64/boot/dts/qcom/sm6225-motorola-rhode.dts
+@@ -351,3 +351,19 @@ ts_avdd: regulator-ts-avdd {
+ 		regulator-boot-on;
+ 	};
+ };
++
++&i2c5 {
++	status = "okay";
++
++	charger@6a {
++		compatible = "ti,bq25890";
++		reg = <0x6a>;
++
++		interrupt-parent = <&tlmm>;
++		interrupts = <96 IRQ_TYPE_EDGE_FALLING>;
++
++		ti,battery-regulation-voltage = <4350000>;
++		ti,charge-current = <3250000>;
++		ti,termination-current = <256000>;
++	};
++};
+diff --git a/arch/arm64/boot/dts/qcom/sm6225-motorola-rhode.dts.orig b/arch/arm64/boot/dts/qcom/sm6225-motorola-rhode.dts.orig
+index b462a2e2e..4a9b57a40 100644
+--- a/arch/arm64/boot/dts/qcom/sm6225-motorola-rhode.dts.orig
++++ b/arch/arm64/boot/dts/qcom/sm6225-motorola-rhode.dts.orig
+@@ -351,19 +351,3 @@
+ 		regulator-boot-on;
+ 	};
+ };
+-
+-&i2c1 {
+-	status = "okay";
+-
+-	charger@6a {
+-		compatible = "ti,bq25890";
+-		reg = <0x6a>;
+-
+-		interrupt-parent = <&tlmm>;
+-		interrupts = <96 IRQ_TYPE_EDGE_FALLING>;
+-
+-		ti,battery-regulation-voltage = <4350000>;
+-		ti,charge-current = <3250000>;
+-		ti,termination-current = <256000>;
+-	};
+-};

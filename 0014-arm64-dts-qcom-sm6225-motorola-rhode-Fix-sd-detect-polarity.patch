@@ -1,0 +1,49 @@
+From 74d739818769959c688db09cf5674a495ce355de Mon Sep 17 00:00:00 2001
+From: fwlta <monkeyfwlta@protonmail.com>
+Date: Wed, 16 Sep 2026 11:24:22 -0300
+Subject: [PATCH 14/15] arm64: dts: qcom: sm6225-motorola-rhode: fix sd card
+ detect polarity
+
+Signed-off-by: fwlta <monkeyfwlta@protonmail.com>
+---
+ .../boot/dts/qcom/sm6225-motorola-rhode.dts      |  2 +-
+ .../boot/dts/qcom/sm6225-motorola-rhode.dts.orig | 16 ++++++++++++++++
+ 2 files changed, 17 insertions(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/sm6225-motorola-rhode.dts b/arch/arm64/boot/dts/qcom/sm6225-motorola-rhode.dts
+index 8fc43f9ad..58cb5bfbd 100644
+--- a/arch/arm64/boot/dts/qcom/sm6225-motorola-rhode.dts
++++ b/arch/arm64/boot/dts/qcom/sm6225-motorola-rhode.dts
+@@ -225,7 +225,7 @@ &sdhc_2 {
+ 	pinctrl-1 = <&sdc2_state_off>;
+ 	pinctrl-names = "default", "sleep";
+ 
+-	cd-gpios = <&tlmm 88 GPIO_ACTIVE_LOW>;
++	cd-gpios = <&tlmm 88 GPIO_ACTIVE_HIGH>;
+ 
+ 	vmmc-supply = <&pm6125_l22>;
+ 	vqmmc-supply = <&pm6125_l5>;
+diff --git a/arch/arm64/boot/dts/qcom/sm6225-motorola-rhode.dts.orig b/arch/arm64/boot/dts/qcom/sm6225-motorola-rhode.dts.orig
+index 4a9b57a40..b462a2e2e 100644
+--- a/arch/arm64/boot/dts/qcom/sm6225-motorola-rhode.dts.orig
++++ b/arch/arm64/boot/dts/qcom/sm6225-motorola-rhode.dts.orig
+@@ -351,3 +351,19 @@
+ 		regulator-boot-on;
+ 	};
+ };
++
++&i2c1 {
++	status = "okay";
++
++	charger@6a {
++		compatible = "ti,bq25890";
++		reg = <0x6a>;
++
++		interrupt-parent = <&tlmm>;
++		interrupts = <96 IRQ_TYPE_EDGE_FALLING>;
++
++		ti,battery-regulation-voltage = <4350000>;
++		ti,charge-current = <3250000>;
++		ti,termination-current = <256000>;
++	};
++};

@@ -1,0 +1,43 @@
+From 099d22afa9dc7ee19d92cf96a1d303fa2be12e95 Mon Sep 17 00:00:00 2001
+From: fwlta <monkeyfwlta@protonmail.com>
+Date: Wed, 16 Sep 2026 11:24:13 -0300
+Subject: [PATCH 02/15] pinctrl: qcom: Add SM6225 TLMM driver wiring
+
+Signed-off-by: fwlta <monkeyfwlta@protonmail.com>
+---
+ drivers/pinctrl/qcom/Kconfig.msm | 9 +++++++++
+ drivers/pinctrl/qcom/Makefile    | 1 +
+ 2 files changed, 10 insertions(+)
+
+diff --git a/drivers/pinctrl/qcom/Kconfig.msm b/drivers/pinctrl/qcom/Kconfig.msm
+index 9409e678e..d2a1aba3b 100644
+--- a/drivers/pinctrl/qcom/Kconfig.msm
++++ b/drivers/pinctrl/qcom/Kconfig.msm
+@@ -470,6 +470,15 @@ config PINCTRL_SM6125
+ 	 Qualcomm Technologies Inc TLMM block found on the Qualcomm
+ 	 Technologies Inc SM6125 platform.
+ 
++config PINCTRL_SM6225
++	tristate "Qualcomm SM6225 pin controller driver"
++	depends on ARM64 || COMPILE_TEST
++	default ARCH_QCOM
++	help
++	 This is the pinctrl, pinmux, pinconf and gpiolib driver for the
++	 Qualcomm Technologies Inc TLMM block found on the Qualcomm
++	 Technologies Inc SM6225 platform.
++
+ config PINCTRL_SM6350
+ 	tristate "Qualcomm SM6350 pin controller driver"
+ 	depends on ARM64 || COMPILE_TEST
+diff --git a/drivers/pinctrl/qcom/Makefile b/drivers/pinctrl/qcom/Makefile
+index 93cc4e796..af4c4a18d 100644
+--- a/drivers/pinctrl/qcom/Makefile
++++ b/drivers/pinctrl/qcom/Makefile
+@@ -65,6 +65,7 @@ obj-$(CONFIG_PINCTRL_SM4450) += pinctrl-sm4450.o
+ obj-$(CONFIG_PINCTRL_SM6115) += pinctrl-sm6115.o
+ obj-$(CONFIG_PINCTRL_SM6115_LPASS_LPI) += pinctrl-sm6115-lpass-lpi.o
+ obj-$(CONFIG_PINCTRL_SM6125) += pinctrl-sm6125.o
++obj-$(CONFIG_PINCTRL_SM6225) += pinctrl-sm6225.o
+ obj-$(CONFIG_PINCTRL_SM6350) += pinctrl-sm6350.o
+ obj-$(CONFIG_PINCTRL_SM6350_LPASS_LPI) += pinctrl-sm6350-lpass-lpi.o
+ obj-$(CONFIG_PINCTRL_SM6375) += pinctrl-sm6375.o
